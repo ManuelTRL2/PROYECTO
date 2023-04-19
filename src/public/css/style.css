@@ -1,4 +1,43 @@
+/* INDEX */
+
+.mi-imagen {
+    max-width: 40%;
+}
+
+@media screen and (max-width: 740px) {
+    .mi-imagen {
+        max-width: 100%;
+        /* Ajusta la imagen al ancho del contenedor padre */
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+/* Regla de estilo para dispositivos con ancho de pantalla menor a 250px */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .mi-imagen {
+        max-width: 70%;
+        /* Ajusta la imagen al ancho del contenedor padre */
+    }
+
+    /* Ajusta el ancho de las columnas en pantallas pequeñas */
+    .row-cols-1.row-cols-md-3>* {
+        flex-basis: calc(50% - 10px);
+        /* Ancho del 50% del contenedor con espacio de 10px entre elementos */
+
+    }
+
+    /* Centra el tercer elemento en la fila inferior */
+    .row-cols-1.row-cols-md-3> :last-child {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .rectangulo {
+    cursor: pointer;
     margin: 0px auto;
     width: 300px;
     height: 300px;
@@ -8,9 +47,26 @@
     font-size: 20pt;
     font-weight: bold;
 }
-.color-2{
-   color: #AC7819;; 
+
+.color-1 {
+    color: #CF242E;
+    ;
 }
+
+.color-2 {
+    color: #AC7819;
+    ;
+}
+
+.color-a{
+    color: #000000; /* Cambia esto al color deseado para los enlaces no visitados */
+    text-decoration: none; /* Quitar la subrayado predeterminado */
+}
+
+.color-a:hover {
+    color: #AC7819; 
+  }
+
 .text-t {
     text-align: center;
     top: 20px;
@@ -57,3 +113,69 @@
     height: 22px;
     border-radius: 0px 30px 0px 0px;
 }
+
+/* LOGIN */
+
+.login-img {
+    max-width: 60%;
+}
+
+.login-rec {
+    margin: 0px auto;
+    max-width: 385px;
+    height: 455px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 38px 2px rgba(0, 0, 0, 0.30);
+    border-radius: 20px;
+}
+
+.input-gr {
+    width: 100%;
+    text-align: center;
+}
+
+.input {
+    width: 80%;
+    border: none;
+    outline: none;
+    height: 50px;
+    background: #D9D9D9;
+    border-radius: 10px;
+    padding: 0px 10px 0px 10px;
+}
+
+.input::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.text-12 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+.button-gr {
+    display: flex;
+    justify-content: center;
+}
+
+.button-do {
+    margin-right: 5px;
+    width: 120px;
+    height: 50px;
+    background: #D9D9D9;
+    border-radius: 20px;
+    border: none;
+}
+
+.button-do:hover {
+    background: #c3c3c3; /* Cambia esto al color de fondo deseado al pasar el mouse */
+    color: blanco; /* Cambia esto al color de texto deseado al pasar el mouse */
+    
+  }
+
+
+
+
+
