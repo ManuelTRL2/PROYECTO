@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TomaTurnos</title>
+  <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap5.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <head>
+    <%- include('partials/head'); -%>
+  </head>
+
+  <div class="container div_margin_top">
+    <div class="row row-cols-2 row-form-group">
+      <div class="col-sm-6 my-3">
+        <div class="form-group ">
+          <label for="fecha_inicio">Fecha inicio:</label>
+          <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
+        </div>
+      </div>
+      <div class="col-sm-6 my-3">
+        <div class="form-group">
+          <label for="fecha_fin">Fecha fin:</label>
+          <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-2 ">
+      <div class="col-sm-2 my-3">
+        <div class="input-group">
+          <input type="text" id="nombreManifestado" name="nombreManifestado" placeholder=" ">
+          <label for="my-input">Nombre</label>
+        </div>
+      </div>
+      <div class="col-sm-3  my-3">
+        <div class="input-group">
+          <input type="text" id="apellidopManifestado" name="apellidopManifestado" placeholder=" ">
+          <label for="my-input">Apellido Paterno</label>
+        </div>
+      </div>
+      <div class="col-sm-3  my-3">
+        <div class="input-group">
+          <input type="text" id="apellidomManifestado" name="apellidomManifestado" placeholder=" ">
+          <label for="my-input">Apellido Materno</label>
+        </div>
+      </div>
+      <div class="col-sm-2 my-3">
+        <div class="input-group">
+          <input type="text" id="ineManifestado" name="ineManifestado" placeholder=" ">
+          <label for="my-input">Clave INE</label>
+        </div>
+      </div>
+      <div class="col-sm-2 my-3">
+        <div class="input-group">
+          <input type="text" id="fierro_manifestado" name="fierro_manifestado" placeholder=" ">
+          <label for="my-input">Fierro</label>
+        </div>
+      </div>
+
+      <button hidden type="submit" id="mi-boton-de-busqueda">Buscar</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-pagos" id="manifestados">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>ClaveINE</th>
+            <th>Domicilio INE</th>
+            <th>Domicilio Parcelario</th>
+            <th>Fecha Inscripción</th>
+            <th hidden>Perfil</th>
+            <th>Fierro</th>
+            <th hidden>Libro</th>
+            <th hidden>Foja</th>
+            <th hidden>Registro</th>
+            <th>Estado</th>
+            <th >Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th hidden>Invisible</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+      </table>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/94f4148fc8.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+  <script src="/js/manifestados.js"></script>
+</body>
+
+
+
+</html>
