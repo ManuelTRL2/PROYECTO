@@ -5,6 +5,15 @@ const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
+const {join} = require('path');
+
+/**
+ * @type {import("puppeteer").Configuration}
+ */
+module.exports = {
+  // Changes the cache location for Puppeteer.
+  cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
+};
 
 // settings
 app.set('port', process.env.PORT || 5000);
@@ -31,6 +40,8 @@ app.use(function(req, res, next) {
 });
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/img/perfil')));
+app.use(express.static(path.join(__dirname, 'public/img/fierro')));
 
 
 // listening the Server
