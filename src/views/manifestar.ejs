@@ -22,7 +22,7 @@
     <div class="container-info">
 
         <form action="/update_manifestar?from=page1" method="post" enctype="multipart/form-data"
-            class="div-info was-validated">
+            class="div-info updateModal was-validated" autocomplete="off">
             <div class="row row-cols-1 row-cols-md-3">
                 <div class="col">
                     <img src="/img/perfil.png" alt="" class="img-thumbnail" width="100px">
@@ -38,7 +38,7 @@
 
             <div class="row row-cols-3 row-cols-md-3">
                 <div class="col my-3"> <input type="text" id="nombre" name="nombre" class="form-control is-invalid"
-                        placeholder="Nombre" required>
+                        placeholder="Nombre"required>
                 </div>
                 <div class="col my-3"> <input type="text" id="apellido_paterno" name="apellido_paterno"
                         class="form-control is-invalid" placeholder="Apellido Paterno" required></div>
@@ -85,11 +85,11 @@
                         placeholder="Iniciales" required>
                 </div>
                 <div class="col-sm-3  my-3">
-                    <input type="tel" id="telefono" name="telefono" class="form-control is-invalid"
+                    <input type="tel" id="telefono" name="telefono" class="form-control is-invalid"  pattern="[0-9]*"
                         placeholder="+XX XXX-XXXXXXX" required>
                 </div>
                 <div class="col-sm-4  my-3">
-                    <img id="subirimg1" width="140px" src="./img/fierro.png" class="img-thumbnail" alt="fierro">
+                    <img id="subirimg1"  src="./img/fierro.png" class="img-thumbnail" alt="fierro">
                     <input hidden id="img_fierro" name="fierro" accept="image/png,image/jpeg" type="file">
                 </div>
             </div>
@@ -114,6 +114,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/manifestar.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>

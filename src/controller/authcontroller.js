@@ -35,6 +35,7 @@ exports.logins = async (req, res) => {
                     //inicio de sesión OK
                     const id = results[0].id
                     const tipo = results[0].tipo
+                    req.tipoUsuario = tipo;
                     // const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
 
                     // })
@@ -48,6 +49,7 @@ exports.logins = async (req, res) => {
                     }
                     res.cookie('jwt', token, cookiesOptions)
                     if (tipo == 'Administrador') {
+
                         res.render('login', {
                             alert: true,
                             alertTitle: "Conexión exitosa",
@@ -55,7 +57,7 @@ exports.logins = async (req, res) => {
                             alertIcon: 'success',
                             showConfirmButton: false,
                             timer: 800,
-                            ruta: 'fierros-pagos-admin'
+                            ruta: 'pagos'
                         })
                     } else {
                         res.render('login', {
@@ -80,39 +82,51 @@ exports.logins = async (req, res) => {
 
 // AUTENTIFICAR QUE EXISTE USUARIO LOGUEADO
 exports.isAuthenticated = async (req, res, next) => {
+    
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
             conexion.query('SELECT * FROM usuarios WHERE id = ?', [decodificada.id], (error, results) => {
-             
-                if (!results) { 
-                    return next() 
+
+                if (!results) {
+                    return next()
                 }
-                
+
                 req.user = results[0]
                 return next()
-                
+
             })
         } catch (error) {
             console.log(error)
             return next()
 
         }
-        
+
     } else {
         res.redirect('/')
     }
 }
 
-exports.isNotAuthenticated = (req, res, next) => {
+exports.isNotAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
-        // Si hay un token JWT, redirigir a la página de ticket
-        return res.redirect('/ticket')
+            const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            conexion.query('SELECT tipo FROM usuarios WHERE id = ?', [decodificada.id], (error, results) => {
+                const tipo = results[0].tipo
+                if (tipo === 'Administrador') {
+                    return res.redirect('/pagos');
+                  } else {
+                    return res.redirect('/ticket');
+                  }
+            })
+    } 
+    else{
+        return next();
     }
-    // Si no hay token JWT, continuar con el siguiente middleware/ruta
-    return next()
+    
 }
 
+
+  
 exports.logout = (req, res) => {
     res.clearCookie('jwt')
     return res.redirect('/')

@@ -95,7 +95,18 @@ function buscarPagos() {
             "data": "id_contribuyente",
             "className": 'ocultar_ID'
           }, {
-            "defaultContent": "<button type='button' class='btn btn-confirmar btnEditar'><i class='fa-solid fa-circle-plus'></i></button>"
+            "data": "id_usuario"
+          }, {
+            "defaultContent": "<button type='button' class='btn btn-confirmar btnEditar'><i class='fa-solid fa-circle-plus'></i></button>",
+            "visible": user != "Administrador"
+          }],
+          columnDefs: [{
+            targets: 4,
+            // Índice de la columna "fecha" (empezando desde 0)
+            render: function render(data) {
+              var fecha = moment(data);
+              return fecha.format('DD/MM/YYYY');
+            }
           }]
         });
         $(document).on("click", ".btnEditar", function () {

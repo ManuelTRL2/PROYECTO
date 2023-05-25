@@ -17,18 +17,24 @@
     <div class="container">
         <form action="/logins" method="post" class="login-rec mt-5" autocomplete="off">
             <div class="center mb-5">
-                <img src="/img/centro.png" alt="centro" class="login-img mt-5">
+                <img src="/img/centro.png" alt="centro" class="login-img mt-3">
             </div>
-
             <div class="input-gr mb-5">
-                <input type="text" name="user" id="user" class="input mb-4 text-12" placeholder="Usuario">
-                <input type="password" name="pass" id="pass" class="input text-12" placeholder="Contraseña">
+                <div>
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" name="user" id="user" class="input mb-4 text-12" placeholder="Usuario">
+                </div>
+                <div>
+                    <label for="usuario" class="form-label">Contraseña</label>
+                    <input type="password" name="pass" id="pass" class="input text-12" placeholder="Contraseña">
+                </div>
             </div>
-            
             <div class="button-gr">
-                <a href="/"><button type="button" class="button-do"><i class="fa-solid fa-house fa-xl text-secondary"></i></button></a>
-                
-               <a href="/ticket"><button type="submit" class="button-do"><i class="fa-solid fa-right-to-bracket fa-xl text-secondary"></i></button></a> 
+                <a href="/"><button type="button" class="button-do"><i
+                            class="fa-solid fa-house fa-xl text-secondary"></i></button></a>
+
+                <a href="/ticket"><button type="submit" class="button-do"><i
+                            class="fa-solid fa-right-to-bracket fa-xl text-secondary"></i></button></a>
             </div>
 
         </form>
@@ -45,21 +51,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <% if(alert) { %>
-            <script>
-                Swal.fire({
-                    title: '<%= alertTitle %>',
-                    text: '<%= alertMessage %>',
-                    icon: '<%= alertIcon %>',
-                    showConfirmButton: <%= showConfirmButton %>,
-                    timer: <%= timer %>,
+    <% if(alert) { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: <%= showConfirmButton %>,
+                timer: <%= timer %>,
             }).then(() => {
-                        window.location = '/<%= ruta %>'
-                    })
-            </script>
-            <% } %>
+                    window.location = '/<%= ruta %>'
+                })
+        </script>
+        <% } %>
 </body>
 
 </html>

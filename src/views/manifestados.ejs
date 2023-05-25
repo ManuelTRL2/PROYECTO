@@ -18,7 +18,7 @@
 <body>
 
   <head>
-    <%- include('partials/head'); -%>
+    <%- include('partials/head', { currentPage: "MANIFESTADOS" }); -%>
   </head>
 
   <div class="container div_margin_top">
@@ -72,7 +72,7 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table-pagos" id="manifestados">
+      <table class="table-pagos" id="manifestados" style="width: 100%;">
         <thead>
           <tr>
             <th>ID</th>
@@ -89,7 +89,7 @@
             <th hidden>Foja</th>
             <th hidden>Registro</th>
             <th>Estado</th>
-            <th >Invisible</th>
+            <th>Invisible</th>
             <th hidden>Invisible</th>
             <th hidden>Invisible</th>
             <th hidden>Invisible</th>
@@ -103,20 +103,885 @@
 
       </table>
     </div>
-  </div>
 
-  <script src="https://kit.fontawesome.com/94f4148fc8.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-  <script src="/js/manifestados.js"></script>
+
+    <div class="modal fade" id="validacion" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button id="manifestar" style="background-color: #318f19" type="button" class="btn"><i
+                class=" text-light fa-solid fa-print"></i></button>
+            <form id="manifestante">
+              <div class="container-lg">
+                <style>
+                  .custom-row {
+                    display: flex;
+                    justify-content: space-between;
+                    text-align: center;
+                    align-items: center;
+
+                  }
+
+                  div .h6 {
+                    width: 330%;
+                    text-align: right;
+                    background-color: rgba(217, 217, 217, 255);
+                  }
+                </style>
+
+                <div class="custom-row mb-3 mt-3">
+
+                  <div>
+                    <img src="/img/aguila.jpg" alt="" width="100%">
+                  </div>
+
+                  <div>
+                    <img src="/img/centro.png" alt="" width="70%">
+                  </div>
+
+                  <div class="h6">
+                    <div style="align-items: center;">
+                      <h6> <strong>SECRETARÍA DEL H. AYUNTAMIENTO DE
+                          CENTRO</strong> </h6>
+                      <h6> <strong> CEDULA DE VALIDACIÓN DEL REGISTRO DE
+                          FIERRO PARA HERRAR GANADO</strong> </h6>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mb-3">
+                  <div>
+                    <p>De conformidad con el Artículo
+                      90
+                      inciso a), 91, fracción II, del
+                      Reglamento de la Administración Pública del Municipio de Centro, Tabasco.
+                      Por
+                      medio de esta
+                      Unidad Técnica, se llevó a cabo la búsqueda del registro de fierro, en el
+                      padrón
+                      municipal
+                      de la Secretaría de éste Ayuntamiento de Centro.
+                    </p>
+                  </div>
+                </div>
+
+                <style>
+                  .input-container {
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    margin: 10px;
+                  }
+
+                  .input-container input {
+                    text-align: center;
+                    height: 100%;
+                    width: 100%;
+                  }
+
+                  .input-container label {
+                    text-align: left;
+                    width: 100%;
+
+                  }
+
+                  .fechaInscrip {
+                    width: 50%;
+                    margin: auto;
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+                    text-align: center;
+                  }
+                </style>
+
+                <div class="row">
+                  <div class="col-5 mb-5">
+                    <div class="input-container">
+                      <label for="input1">Libro:</label>
+                      <input type="text" id="libro_registro" name="libro_registro">
+                    </div>
+                    <div class="input-container">
+                      <label for="input2">Foja:</label>
+                      <input type="text" id="foja_registro" name="foja_registro">
+                    </div>
+
+                    <div class="input-container">
+                      <label for="input1">Registro:</label>
+                      <input type="text" id="numero_registro_registro" name="numero_registro_registro">
+                    </div>
+
+                    <div class="input-container">
+                      <label for="input1">Folio:</label>
+                      <input type="text" id="folio_registro" name="folio_registro">
+                    </div>
+
+                    <div class="input-container">
+                      <label for="input1">Op. Pago:</label>
+                      <input type="text" id="folio_finanzas_registro" name="folio_finanzas_registro">
+                    </div>
+
+                    <div class="input-container">
+                      <label for="input1">Fecha de pago:</label>
+                      <input type="text" id="fecha_finanzas_registro" name="fecha_finanzas_registro">
+                    </div>
+
+                    <div class="input-container">
+                      <label for="input1">Estado:</label>
+                      <input type="text" id="estado_registro" name="estado_registro">
+                    </div>
+
+                    <!-- Repite este código para los otros inputs y labels -->
+                    <div class="center">
+                      <span>Fecha de inscripción</span> <br>
+                      <input class="fechaInscrip" type="text" id="fecha_inscripcion_registro"
+                        name="fecha_inscripcion_registro">
+                    </div>
+
+                  </div>
+
+                  <div class="col-7">
+                    <div class="imgDocument">
+                      <img name="fierro_registro" id="fierro_registro" alt="fierro" src=" ">
+                    </div>
+                  </div>
+                </div>
+                <style>
+                  .divDatos {
+                    display: flex;
+                    width: 100%;
+                  }
+
+                  .inputDatos {
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+                    flex: 1;
+                  }
+
+                  .widInput {
+                    text-align: center;
+                    width: 105%;
+                  }
+
+                  .widInput2 {
+                    text-align: center;
+                    width: 100%;
+                  }
+                </style>
+
+                <div class="mb-5 ">
+                  <div class="divDatos mb-2">
+                    <span>Clave INE:&nbsp;</span>
+                    <input class="inputDatos" name="clave_ine_registro" id="clave_ine_registro" type="text">
+                  </div>
+
+                  <div class="divDatos mb-2">
+                    <span>Nombre:&nbsp;</span>
+                    <input class="inputDatos" name="nombre_registro" id="nombre_registro" type="text">
+                    <input class="inputDatos" name="apellido_paterno_registro" id="apellido_paterno_registro"
+                      type="text">
+                    <input class="inputDatos" name="apellido_materno_registro" id="apellido_materno_registro"
+                      type="text">
+                  </div>
+
+                  <div class="divDatos mb-2">
+                    <span>Domicilio INE:&nbsp;</span>
+                    <input class="inputDatos" name="domicilio_ine_registro" id="domicilio_ine_registro" type="text">
+                  </div>
+
+                  <div class="divDatos mb-2">
+                    <span>Domicilio Parcelario:&nbsp;</span>
+                    <input class="inputDatos " name="domicilio_parcelario_registro" id="domicilio_parcelario_registro"
+                      type="text">
+                  </div>
+
+                </div>
+                <div class="row center">
+                  <div class="col-4 ">
+                    <input class="inputDatos widInput" type="text" name="" id=""
+                      value="Ana Bertha Potenciano Rodriguez">
+                    <br>
+                    <label for="">Búsqueda</label>
+                  </div>
+
+                  <div class="col-4">
+                    <input class="inputDatos widInput2" type="text" name="" id="" value="Karen Viviana Jiménez Méndez">
+                    <br>
+                    <label for="">Reviso</label>
+                  </div>
+
+                  <div class="col-4">
+                    <input class="inputDatos widInput2" type="text" name="" id="" value="Jhovanny Hipólito García">
+                    <br>
+                    <label for="">Vo.
+                      Bo.</label>
+                  </div>
+                </div>
+
+                <style>
+                  .footerUnidad {
+                    color: white;
+                    align-content: center;
+                    display: grid;
+                    text-align: center;
+                    background-color: #831919;
+                  }
+
+                  .footerAncho {
+                    background-color: #831919;
+                    height: 30px;
+                    margin-top: 20px;
+                  }
+
+                  .etiquetaFooter {
+                    margin-top: 40px;
+                  }
+
+                  .etiquetaFootertop {
+                    margin-top: -20px;
+                  }
+                </style>
+                <div class="row etiquetaFooter">
+                  <div class="col-9 footerAncho">
+                  </div>
+                  <div class="col-3 footerUnidad">
+                    <h5>Unidad Técnica</h5>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalHistorial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button id="historial" style="background-color: #318f19" type="button" class="btn"><i
+                class=" text-light fa-solid fa-print"></i></button>
+            <div id="perfil">
+              <div class="container-lg">
+                <div class="custom-row mb-3 mt-3">
+
+                  <div>
+                    <img src="/img/aguila.jpg" alt="" width="100%">
+                  </div>
+
+                  <div>
+                    <img src="/img/centro.png" alt="" width="70%">
+                  </div>
+
+                  <div class="h6">
+                    <div style="align-items: center;">
+                      <h6> <strong>SECRETARÍA DEL H. AYUNTAMIENTO DE
+                          CENTRO</strong> </h6>
+                      <h6> <strong>PERFIL DEL CONTRIBUYENTE</strong> </h6>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div>
+                  <div class="row mb-3">
+
+                    <!--  FOTO DEL PERFIL DEL CONTRIBUYENTE -->
+                    <div class="col-2">
+                      <div>
+                        <img title="perfil" id="perfilperfil" src='./img/perfil.png' class="img-thumbnail" alt="...">
+                      </div>
+                    </div>
+
+                    <!--  DATOS DEL CONTRIBUYENTE -->
+                    <div class="col-10">
+
+                      <div class="divDatos mb-2">
+                        <span>Nombre:&nbsp;</span>
+                        <input class="inputDatos" name="nombre_perfil" id="nombre_perfil" type="text">
+                        <input class="inputDatos" name="apellido_paterno_perfil" id="apellido_paterno_perfil"
+                          type="text">
+                        <input class="inputDatos" name="apellido_paterno_perfil" id="apellido_paterno_perfil"
+                          type="text">
+                      </div>
+
+                      <div class="divDatos mb-2">
+                        <span>Clave INE:&nbsp;</span>
+                        <input class="inputDatos" name="clave_ine_perfil" id="clave_ine_perfil" type="text">
+                      </div>
+
+                      <div class="divDatos mb-2">
+                        <span>Domicilio INE:&nbsp;</span>
+                        <input class="inputDatos" name="domicilio_ine_perfil" id="domicilio_ine_perfil" type="text">
+                      </div>
+
+                      <div class="divDatos mb-2">
+                        <span>Domicilio Parcelario:&nbsp;</span>
+                        <input class="inputDatos " name="domicilio_parcelario_perfil" id="domicilio_parcelario_perfil"
+                          type="text">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-5 mb-5">
+                      <div class="input-container">
+                        <label for="input1">Libro:</label>
+                        <input type="text" id="libro_perfil" name="libro_perfil">
+                      </div>
+                      <div class="input-container">
+                        <label for="input2">Foja:</label>
+                        <input type="text" id="foja_perfil" name="foja_perfil">
+                      </div>
+
+                      <div class="input-container">
+                        <label for="input1">Registro:</label>
+                        <input type="text" id="numero_registro_perfil" name="numero_registro_perfil">
+                      </div>
+
+                      <div class="input-container">
+                        <label for="input1">Folio:</label>
+                        <input type="text" id="folio_perfil" name="folio_perfil">
+                      </div>
+
+                      <div class="input-container">
+                        <label for="input1">Op. Pago:</label>
+                        <input type="text" id="folio_finanzas_perfil" name="folio_finanzas_perfil">
+                      </div>
+
+                      <div class="input-container">
+                        <label for="input1">Fecha de pago:</label>
+                        <input type="text" id="fecha_finanzas_perfil" name="fecha_finanzas_perfil">
+                      </div>
+
+                      <div class="input-container">
+                        <label for="input1">Estado:</label>
+                        <input type="text" id="estado_perfil" name="estado_perfil">
+                      </div>
+
+                      <!-- Repite este código para los otros inputs y labels -->
+                      <div class="center">
+                        <span>Fecha de inscripción</span> <br>
+                        <input class="fechaInscrip" type="text" id="fecha_inscripcion_perfil"
+                          name="fecha_inscripcion_perfil">
+                      </div>
+
+                    </div>
+
+                    <div class="col-7">
+                      <div class="imgDocument">
+                        <img name="fierro_perfil" id="fierro_perfil" alt="fierro" src=" ">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="salto">
+                    <table class="table-pagos" id="id_pagos" style="width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Concepto</th>
+                          <th>Folio</th>
+                          <th>Fecha</th>
+                          <th>Hora</th>
+                          <th>Cantidad</th>
+                          <th>Importe</th>
+                          <th>Finanzas</th>
+                        </tr>
+                      </thead>
+                    </table>
+
+                  </div>
+
+                  <!-- ETIQUETA -->
+                  <div class="row etiquetaFooter">
+                    <div class="col-9 footerAncho">
+                    </div>
+                    <div class="col-3 footerUnidad">
+                      <h5>Unidad Técnica</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="/update_manifestar?from=page2" method="post" enctype="multipart/form-data"
+              class="updateModal was-validated">
+              <div class="row row-cols-1 row-cols-md-3">
+                <div class="col">
+                  <img src="/img/perfil.png" alt="" class="img-thumbnail" width="100px">
+                </div>
+
+
+                <input hidden type="text" id="id_contribuyente" name="id_contribuyente">
+
+                <div class="col my-3"> <input type="text" id="clave_ine" name="clave_ine"
+                    class="form-control is-invalid" placeholder="Clave INE" required></div>
+                <div class="col my-3"> </div>
+              </div>
+
+              <div class="row row-cols-3 row-cols-md-3">
+                <div class="col my-3"> <input type="text" id="nombre" name="nombre" class="form-control is-invalid"
+                    placeholder="Nombre" required>
+                </div>
+                <div class="col my-3"> <input type="text" id="apellido_paterno" name="apellido_paterno"
+                    class="form-control is-invalid" placeholder="Apellido Paterno" required></div>
+                <div class="col my-3"> <input type="text" id="apellido_materno" name="apellido_materno"
+                    class="form-control is-invalid" placeholder="Apellido Materno" required></div>
+              </div>
+
+              <div class="row row-cols-2 row-cols-md-2">
+                <div class="col my-3"> <input id="domicilio_ine" name="domicilio_ine" type="text"
+                    class="form-control is-invalid" placeholder="Domicilio INE" required></div>
+                <div class="col my-3"> <input type="text" id="domicilio_parcelario" name="domicilio_parcelario"
+                    class="form-control is-invalid" placeholder="Domicilio Parcelario" required></div>
+              </div>
+
+              <div class="row row-cols-3">
+                <div class="col-sm-2 my-3">
+                  <input type="number" id="libro" name="libro" class="form-control is-invalid" placeholder="Libro"
+                    pattern="[0-9]*" required>
+                </div>
+                <div class="col-sm-2  my-3">
+                  <input type="number" id="foja" name="foja" class="form-control is-invalid" placeholder="Foja"
+                    pattern="[0-9]*" required>
+                </div>
+                <div class="col-sm-2  my-3">
+                  <input type="number" id="numero_registro" name="numero_registro" class="form-control is-invalid"
+                    pattern="[0-9]*" placeholder="No. Registro" required>
+                </div>
+                <div class="col-sm-3  my-3">
+                  <input type="text" id="tipo" name="tipo" class="form-control is-invalid" value="Ganado" required>
+                </div>
+                <div class="col-sm-3  my-3">
+                  <input type="text" id="estado" name="estado" class="form-control is-invalid" value="ACTIVO" required>
+                </div>
+              </div>
+
+              <div class="row row-cols-2">
+                <div class="col-sm-3  my-3">
+                  <input type="text" id="notas" name="notas" class="form-control is-invalid" value="Ninguna"
+                    placeholder="Notas" required>
+                </div>
+                <div class="col-sm-2  my-3">
+                  <input type="text" id="iniciales" name="iniciales" class="form-control is-invalid"
+                    placeholder="Iniciales" required>
+                </div>
+                <div class="col-sm-3  my-3">
+                  <input type="tel" id="telefono" name="telefono" class="form-control is-invalid" pattern="[0-9]*"
+                    placeholder="XXX-XXXXXXX" required>
+                </div>
+                <div class="col-sm-4  my-3">
+                  <img id="subirimg1" width="140px" src="./img/fierro.png" class="img-thumbnail" alt="fierro">
+                  <input hidden id="img_fierro" name="fierro" accept="image/png,image/jpeg" type="file">
+                </div>
+              </div>
+
+              <div class="row row-cols-3 row-cols-md-3 btn-manifestar">
+                <div class="col my-3"><button type="button" class="btn btn-danger"
+                    onclick="validarFormulario()">Manifestar</button>
+                </div>
+                <div class="col my-3"></div>
+                <div class="col my-3"></div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUARTO MODAL CANCELACIÓN-->
+    <div class="modal fade" id="modalcancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div>
+              <button id="cancelarCedu" style="background-color: #318f19" type="button" class="btn"><i
+                  class=" text-light fa-solid fa-print"></i></button>
+              <div id="cancelar">
+                <div class="container-lg">
+
+                  <div class="custom-row mb-3 mt-3">
+
+                    <div>
+                      <img src="/img/aguila.jpg" alt="" width="100%">
+                    </div>
+
+                    <div>
+                      <img src="/img/centro.png" alt="" width="70%">
+                    </div>
+
+                    <div class="h6">
+                      <div style="align-items: center;">
+                        <h6> <strong>SECRETARÍA DEL H. AYUNTAMIENTO DE
+                            CENTRO</strong> </h6>
+                        <h6> <strong> CEDULA DE CANCELACIÓN DE
+                            FIERRO PARA HERRAR GANADO</strong> </h6>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col">
+                      <div>
+                        <span>Lic. Yolanda del Carmen Osuna Huerta</span>
+                        <br>
+                        <span>Presidenta Municipal</span>
+                        <br>
+                        <span>Presente</span>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="input-container">
+                        <label for="input1">Folio:</label>
+                        <input type="text" id="folio_cancela" name="folio_cancela">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p class="mb-4 justificar">Conforme al articulo 25 de la
+                      Ley de Desarrollo Pecuario de Tabasco, en relación al artículo 91 fracción
+                      II del Reglamento de la Administración Pública del Municipio de Centro
+                      Tabasco, que para fines legales obliga y corresponde, manifestar la
+                      cancelación del fierro y marca de ganado, asentada en el padrón que lleva la
+                      secretaria del ayuntamiento.
+
+                    </p>
+                    <style>
+                      /* Estilos para ajustar los inputs y columnas */
+                      .justificar {
+                        text-align: justify;
+                      }
+
+                      .colCancelar input {
+                        width: 100%;
+                        /* Ajusta el ancho de los inputs al 100% del contenedor */
+                        height: 40px;
+                        box-sizing: border-box;
+                        /* Incluye el tamaño del borde y el padding en el ancho total */
+                      }
+
+                      /* Estilos opcionales para los labels encima de los inputs */
+                      .colCancelar label {
+                        display: block;
+                        /* Hace que los labels ocupen una línea completa */
+                        margin-bottom: 5px;
+                        /* Añade un margen inferior para separar los labels de los inputs */
+                      }
+                    </style>
+                    <div class="row mb-3 center">
+                      <div class="col-2 colCancelar">
+                        <label for="tramite">Fecha de trámite</label>
+                        <input class="mb-5 center" type="text" name="fecha_finanzas_cancela"
+                          id="fecha_finanzas_cancela">
+                        <label for="opPago">OP. Pago</label>
+                        <input class="center" type="text" name="folio_finanzas_cancela" id="folio_finanzas_cancela">
+                      </div>
+
+                      <div class="col-8">
+                        <div class="imgDocument">
+                          <img name="fierro_cancela" id="fierro_cancela" alt="fierro" src=" ">
+                        </div>
+                      </div>
+
+                      <div class="col-2 colCancelar">
+                        <label for="libro">Libro</label>
+                        <input class="mb-5 center" type="text" name="libro_cancela" id="libro_cancela">
+                        <label for="foja">Foja</label>
+                        <input class="mb-5 center" type="text" name="foja_cancela" id="foja_cancela">
+                        <label for="registro">Registro</label>
+                        <input class="center" type="text" name="numero_registro_cancela" id="numero_registro_cancela">
+                      </div>
+                    </div>
+
+
+
+                    <div>
+                      <p class="justificar">Firmo de conformidad con las catacterísticas vectoriales y
+                        de
+                        imagen que
+                        representa la marca de
+                        herrar ganado, que cancelo ante esta autoridad municipal. </p>
+                    </div>
+
+                    <style>
+                      .edit {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                      }
+
+                      .inputs-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        text-align: center;
+                      }
+
+                      .inputs-wrapper input {
+                        border-left: none;
+                        border-right: none;
+                        border-top: none;
+                        margin-right: 10px;
+                        width: 300px;
+                        text-align: center;
+                      }
+                    </style>
+
+                    <div class="edit">
+                      <div class="inputs-wrapper">
+                        <div>
+                          <input type="text">
+                          <p>Nombre y Firma del Contribuyente</p>
+                        </div>
+
+                      </div>
+
+                      <div class="inputs-wrapper">
+                        <div>
+                          <input type="text" value="C. Karen Viviana Jiménez Méndez">
+                          <p>Responsable del Área de Registro</p>
+                        </div>
+                        <div>
+                          <input type="text" value="C. Karen Viviana Jiménez Méndez">
+                          <p>Jefe de Depto "A"</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ETIQUETA -->
+                    <div class="row etiquetaFootertop">
+                      <div class="col-9 footerAncho">
+                      </div>
+                      <div class="col-3 footerUnidad">
+                        <h5>Unidad Técnica</h5>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .modal_quinto {
+        max-width: 21.59cm !important;
+  /* 8.5 pulgadas */
+  height: 27.94cm !important;
+  /* 11 pulgadas */
+
+      }
+    </style>
+
+    <!-- QUINTO MODAL -->
+    <div class="modal modal-tam fade" id="modalbusqueda" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog  modal_quinto">
+        <div class="modal-content  ">
+          <div class="modal-body" style="padding:  0px 50px 0px; max-width: 21.59cm !important;
+          height: 29.94cm !important;
+          padding: 0px 50px 0px;">
+              <button id="certificacion" style="background-color: #318f19" type="button" class="btn"><i
+                  class=" text-light fa-solid fa-print"></i></button>
+              <div id="cer_id">
+                  <div class="custom-row     ">
+
+                    <div>
+                      <img src="/img/aguila.jpg" alt="" width="50%">
+                    </div>
+
+                    <div>
+                      <img src="/img/centro.png" alt="" width="40%">
+                    </div>
+
+                    <style>
+                      .em {
+                        width: 120%;
+                      }
+                    </style>
+                    <div class="em">
+                      <em>“2023 Año de Francisco Villa el Revolucionario del pueblo”</em>
+                    </div>
+                  </div>
+
+                  <div class="mb-2" style="text-align: right;">
+                    <span>SECRETARÍA DEL AYUNTAMIENTO</span>
+                    <br>
+                    <span>CERTIFICACIÓN DE REGISTRO DE FIERRO</span>
+                    <br>
+                    <strong>NÚMERO: <input type="text" value="SA/UT/001/2023"></strong>
+                  </div>
+
+                  <style>
+                    .imgPerfil {
+                      float: left;
+                      margin-right: 10px;
+                    }
+
+                    .imgPerfil div {
+                      width: 2.7cm;
+                      height: 3.2cm;
+                      outline: 10px;
+                      border: 1px solid rgb(0, 0, 0) !important
+                    }
+
+                    .saltolinea {
+                      line-height: 135%;
+                    }
+                  </style>
+          
+
+
+                    <div>
+                      <div id="perfilCertificado">
+                        <div class="imgPerfil">
+                          <div>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="justificar saltolinea"> <strong>El que suscribe, Lic. José Antonio Alejo Hernández,
+                          Secretario del
+                          Ayuntamiento del Municipio de Centro, Tabasco;</strong> con
+                        fundamento en los artículos 3 fracción I, 8 fracción II, 12, 22, 23, 24 y 25
+                        de la Ley de Desarrollo Pecuario del Estado de Tabasco, 78 fracción XV, 97 fracción IX de
+                        la Ley Orgánica de los Municipios del Estado de Tabasco, 91 fracción
+                        II del Reglamento de la Administración Pública, y 29 fracción II del Bando
+                        de Policía y Gobierno, ambos ordenamientos del Municipio de Centro,
+                        Tabasco.
+                      </p>
+                    </div>
+
+                    <p class="center"><strong>C E R T I F I C A</strong></p>
+
+                    <p class="justificar saltolinea">Que con fecha
+                      <span hidden id="fecha_inscripcion_cer"></span><span id="formateada"></span>, ha
+                      sido registrado el fierro de herrar ganado a nombre de la persona física y/o moral:
+                    </p>
+
+                    <div id="inputContribuyente">
+                      <p class="center">
+                        <strong>
+                          C. <span id="nombre_cer"></span>
+                          <span id="apellido_paterno_cer"></span>
+                          <span id="apellido_materno_cer"></span>
+                        </strong> con clave de
+                        <strong> INE <span id="clave_ine_cer"></span></strong>
+                      </p>
+
+                    </div>
+                    <button id="addinput" class="btn btn-success">Agregar</button>
+
+
+                    <p class="justificar saltolinea">Quien utiliza para marcar los semovientes de su propiedad
+                      que se encuentran ubicados en <strong id="domicilio_parcelario_cer"></strong> en
+                      el <strong>Libro <span id="libro_cer"></span></strong> del Registro de
+                      Fierros de Herrar Ganado, a <strong>Foja <span id="foja_cer"></span>,
+                        Registro Núm.<span id="numero_registro_cer"></span></strong>, cuya
+                      descripción gráfica se inserta en este documento. </p>
+
+                    <div style="width: 10cm; height:9cm; margin: 0 auto; outline: 10px;  border-radius: 10px;">
+                    </div>
+                    <br>
+                    <div>
+                      <p class="justificar saltolinea">
+                        Para los usos y fines legales que al interesado convengan, se extiende
+                        la presente, en la Ciudad de Villahermosa, Capital del Estado de
+                        Tabasco, <span id="diactual"></span>
+                      </p>
+                      <p class="center"><strong>A T E N T A M E N T E</strong> </p>
+                    </div>
+                    <!-- ETIQUETA -->
+                    <!-- <div class="row etiquetaFootertop">
+                      <div class="col-9 footerAncho">
+                      </div>
+                      <div class="col-3 footerUnidad">
+                        <h5>Unidad Técnica</h5>
+                      </div>
+                    </div> -->
+
+           
+        
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/94f4148fc8.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="js/html2pdf.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="/js/manifestados.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Al hacer clic en el botón "Nuevo input"
+        $('#addinput').click(function () {
+          // Creamos un nuevo input
+          var imagenPerfil = $('<div class="imgPerfil">' +
+            '<div>' +
+            '</div>' +
+            '</div>');
+          var inputDatos = $('<p class="center">' +
+            '<strong> C. <input type="text" class="nombre-input">' +
+            '</strong> con clave de <strong> INE <input type="text" class="clave-input"></strong>' +
+            '</p>');
+
+          // Creamos un botón de borrar
+          var botonBorrar = $('<button class="borrar">Borrar</button>');
+
+          // Creamos un contenedor para el input y el botón de borrar
+          var contenedor = $('<div class="contenedor"></div>').append(inputDatos, botonBorrar);
+
+          // Lo agregamos a la lista de inputs
+          $('#perfilCertificado').append(imagenPerfil);
+          $('#inputContribuyente').append(contenedor);
+
+          // Al hacer clic en el botón de borrar
+          botonBorrar.click(function () {
+            // Eliminamos la imagen de perfil y el input de datos
+            imagenPerfil.remove();
+            contenedor.remove();
+          });
+
+        });
+
+
+      });
+    </script>
+
+
+
 </body>
 
 

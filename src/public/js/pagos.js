@@ -1,4 +1,3 @@
-
 $('#buscar_operacion, #buscar_nombre, #buscar_apellidop, #buscar_apellidom, #buscar_concepto, #fecha_inicio, #fecha_fin').on('keydown', function (e) {
   // Si se presionó la tecla enter, realiza la búsqueda
   if (e.keyCode === 13) {
@@ -59,12 +58,17 @@ function buscarPagos() {
 
       // Verifica si la tabla ya ha sido inicializada
       if ($.fn.DataTable.isDataTable('#pagos')) {
+        
         // Si la tabla ya ha sido inicializada, destruye la instancia existente
         $('#pagos').DataTable().destroy();
-      }
+        
+        
+      } 
 
       // Inicializa la tabla de DataTables con los resultados filtrados
       $(document).ready(function () {
+   
+        
         var table = $('#pagos').DataTable({
           searching: false,
           data: resultados,
@@ -78,12 +82,24 @@ function buscarPagos() {
             { "data": "id_ticket", "className": "fondo" }, { "data": "clave", }, { "data": "folio_finanzas" },
             { "data": "folio" }, { "data": "fecha" }, { "data": "nombre" }, { "data": "apellido_paterno" },
             { "data": "apellido_materno" }, { "data": "concepto" }, { "data": "uma" }, { "data": "cantidad" },
-            { "data": "importe" }, { "data": "id_contribuyente", "className": 'ocultar_ID' },
-            { "defaultContent": "<button type='button' class='btn btn-confirmar btnEditar'><i class='fa-solid fa-circle-plus'></i></button>" }
+            { "data": "importe" }, { "data": "id_contribuyente", "className": 'ocultar_ID' }, { "data": "id_usuario"},
+            { "defaultContent": "<button type='button' class='btn btn-confirmar btnEditar'><i class='fa-solid fa-circle-plus'></i></button>","visible": user != "Administrador"}
           ],
+
+          columnDefs: [
+            {
+              targets: 4, // Índice de la columna "fecha" (empezando desde 0)
+              render: function(data) {
+                var fecha = moment(data);
+                return fecha.format('DD/MM/YYYY');
+              }, 
+            }, 
+    
+            
+          ]
           
         });
-
+      
         $(document).on("click", ".btnEditar", function () {
           opcion = 'editar';
           fila = $(this).closest("tr");
@@ -122,7 +138,7 @@ function buscarPagos() {
           });
         });
           
-
+       
         table.buttons().container()
         .appendTo('#pagos_wrapper .col-md-6:eq(0)' );
       });
@@ -131,5 +147,6 @@ function buscarPagos() {
     }
   });
 }
+
 
 

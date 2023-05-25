@@ -104,6 +104,10 @@ $(function () {
                 }
             });
         },
+        focus: function (event, ui) {
+            event.preventDefault();
+            $("#clave_ine").val(ui.item.label);
+        },
         select: function (event, ui) {
             $("#nombre").text(ui.item.value.nombre);
             $("#apellido_paterno1").text(ui.item.value.apellido_paterno);
@@ -127,11 +131,11 @@ $(function () {
                     document.getElementById("fecha").removeAttribute("hidden");
                 }
             } else if (fecha_contribuyente) {
-                var partes1 = fecha_contribuyente.split("/");
-                var anio1 = parseInt(partes1[2]) + 1;
+                console.log(fecha_contribuyente)
+                var partes1 = fecha_contribuyente.split("-");
+                var anio1 = parseInt(partes1[0]) + 1;
                 document.getElementById("fecha_inscripcion").value = anio1;
                 document.getElementById("fecha_inscripcion").removeAttribute("hidden");
-
                 var fechaActual = new Date();
                 var anioActual = fechaActual.getFullYear() - 1;
                 document.getElementById("fecha_actual").innerText += "- " + anioActual;
@@ -146,24 +150,19 @@ $(document).ready(function () {
     $('form #enviar-contribuyente').click(function (e) {
         let $form = $(this).closest('form');
 
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false,
-        })
-
-        swalWithBootstrapButtons.fire({
+ 
+        swal.fire({
             title: '¿Deseas registrar al contribuyente?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'OK', 
             cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                swalWithBootstrapButtons.fire({
+                swal.fire({
                     icon: 'success',
                     title: 'Contribuyente registrados',
                     showConfirmButton: false,
@@ -175,7 +174,7 @@ $(document).ready(function () {
             } else if (
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                swalWithBootstrapButtons.fire(
+                swal.fire(
                     {
                         icon: 'error',
                         title: 'Contribuyente no registrado',
@@ -270,7 +269,10 @@ function FolioInsert() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const $boton = document.getElementById("enviarTramites");
-    $boton.addEventListener("click", () => {
+    var table = document.getElementById("rows");
+    $boton.addEventListener("click", function(event) {
+        if (table.rows.length > 0 && document.getElementById("clave_ine").value.trim() !== "") {
+              
         document.getElementById("enviarTramites").disabled = true;
         $.ajax({
             url: '/obtener-datos?',
@@ -288,5 +290,24 @@ document.addEventListener("DOMContentLoaded", () => {
             window.print();
             location.reload();
         })
+            return true;
+          } else {
+            // Prevenir el envío del formulario
+            event.preventDefault();
+            // Mostrar un mensaje de error
+      
+
+            Swal.fire({
+                icon: 'error',
+                title: 'El ticket debe de contener todos los datos.',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            return false;
+          }
+        
     });
 });
+
+
+

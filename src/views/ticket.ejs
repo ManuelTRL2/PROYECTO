@@ -23,7 +23,7 @@
     <input type="text" id="busqueda-tramites" name="busqueda-tramites" class="buscar" placeholder="Buscar...">
   </div>
 
-  <div class="div_ticket ">
+  <div class="div_ticket" id="div_ticket1">
     <div class="center">
       <img src="/img/centro.png" alt="" width="220px">
     </div>
@@ -53,7 +53,7 @@
       <span id="domicilio_parcelario"></span>
       <p><strong>INE:</strong></p>
       <div>
-        <input type="text" id="clave_ine" name="clave_ine"> <button type="button" class="btn btn-confirmar div-oculto"
+        <input type="text" id="clave_ine" name="clave_ine"> <button type="button" id="buttonAdd" class="btn btn-confirmar div-oculto"
           data-bs-toggle="modal" data-bs-target="#Moda_contribuyente"><i class="fa-solid fa-user-plus"></i></button>
       </div>
       <p class="center"> <input hidden type="text" id="fecha" class="input-fecha"> <input hidden type="text"
@@ -159,7 +159,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
   <script src="/js/ticket.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="js/html2pdf.bundle.min.js"></script>
 </body>
 
 </html>
